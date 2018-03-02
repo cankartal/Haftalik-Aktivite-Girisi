@@ -1,0 +1,186 @@
+<mvc:View controllerName="sap.ui.prodea.solman.aktivite.controller.main"
+		  height="100%"
+		  xmlns:mvc="sap.ui.core.mvc"
+		  xmlns:core="sap.ui.core"
+		  xmlns:layout="sap.ui.layout"
+		  xmlns="sap.m"
+		  xmlns:f="sap.f">
+		  <Page showNavButton="true"
+		  		navButtonPress="onNavBack">
+	
+<!-- 	<TabContainer items="" id="employeeTableContId"
+				  showAddNewButton="false"
+				  selectedKey=""
+				  addNewButtonPress="addNewButtonPressHandler" itemClose="itemCloseHandler">
+	
+	<items>
+	<TabContainerItem text="mehmetm" modified="false" key="Employee" id="tabName"> -->
+    <OverflowToolbar>				
+		<SearchField id="searchBarMain" 
+					 liveChange="handleSearch"
+					 width="50%" />
+		<Button id="handleNewItemAdd" icon="sap-icon://add" press="onPressAddRow"  type="Active"/>			 
+		<ToolbarSpacer />
+	</OverflowToolbar>	
+	<content>		  
+	<Table id="planTemplateTable"
+		mode="MultiSelect"
+		items="{activityList>/ActivityList}"
+		>
+	<!--    	<headerToolbar>
+			<Toolbar>
+				<Title text="Şirket Tablosu" level="H2"/>
+			</Toolbar>
+		</headerToolbar>   itemPress="onListItemPressed" -->
+		<columns>
+			<Column
+				
+				type="Active"
+				minScreenWidth="Tablet"
+				demandPopin="true"
+				hAlign="Center"
+				popinDisplay="Inline"
+				>
+				<Text text="{i18n>danisman}" />
+			</Column>
+			<Column
+				
+				type="Active"
+				minScreenWidth="Tablet"
+				demandPopin="true"
+				hAlign="Center" 
+				popinDisplay="Inline"
+				>
+				<Text text="{i18n>tarih}" />
+			</Column>
+			<!-- <Column
+				minScreenWidth="Phone"
+				demandPopin="true"
+				hAlign="Center" 
+				popinDisplay="Inline"
+				>
+				<Text text="{i18n>gun}" />
+			</Column> -->
+			<Column
+				
+				type="Active"
+				hAlign="Left"
+				minScreenWidth="Tablet"
+				demandPopin="true"
+				popinDisplay="Inline"
+				>
+				<Text text="{i18n>musteri-proje}" />
+			</Column>	
+			 <Column
+			 	
+			 	type="Active"
+				minScreenWidth="Tablet"
+				demandPopin="true"
+				hAlign="Center"
+				popinDisplay="Inline"
+				>
+				<Text text="{i18n>lokasyon}" />
+			</Column>
+			  <Column
+			 	width="2em"
+			 	type="Active"
+				minScreenWidth="Tablet"
+				demandPopin="true"
+				hAlign="Center" >
+				
+			</Column> 
+			  <Column
+			  	width="5em"
+			    popinDisplay="Inline"
+				minScreenWidth="Tablet"
+				demandPopin="true"
+				hAlign="Center" >
+				
+			</Column> 
+			 <!-- <Column 
+				minScreenWidth="Tablet"
+				demandPopin="true"
+				hAlign="Center" 
+				visible="true">
+			</Column> -->  																								
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<ComboBox
+						id="danismanTable"
+						selectedKey="{activityList>Kullanici}"
+						items="{path: 'danismanModel>/dataList', templateShareable : false}">
+							<core:Item key="{danismanModel>Danisman}" text="{danismanModel>Danisman}" />					
+					</ComboBox>
+					<DatePicker
+						 change="dateControll" 
+						 id="tarihTable"
+                         displayFormat="dd/MM/yyyy"
+                         text="{activityList>Gun}"
+                         valueStateText="{i18n>hataliTarih}"
+                         value="{path:'activityList>Tarih', type: 'sap.ui.model.type.Date', formatOptions: { source: {pattern: 'yyyy-MM-ddTHH:mm:ss'}, pattern: 'dd/MM/yyyy'}}">    
+                     </DatePicker>
+                     <!--   loadItems="loadFilter" ,
+							,filters : [{ path : 'Danisman', operator : 'EQ', value1 : 'activityList>Kullanici'}]]  -->
+					<ComboBox
+						showSecondaryValues="true"
+						id="musteriTable"
+						selectedKey="{activityList>Musteri}"
+						items="{path: 'selectedProjectModel>/ProjectList', templateShareable : true}"
+						selectionChange="setSelectedProject"
+						>
+					<core:ListItem	
+						key="{selectedProjectModel>Musteri}"
+						text="{selectedProjectModel>Musteri}"
+						additionalText="{selectedProjectModel>Proje}" />					
+					</ComboBox>
+					
+					<!-- <ComboBox
+						require="true"
+						id="projeTable"
+						items="{path: 'projectModel>/dataList', templateShareable : true}">
+							<core:Item key="{activityList>Proje}" text="{activityList>Proje}" />					
+					</ComboBox> -->
+					
+					<ComboBox
+						selectedKey="{activityList>Lokasyon}"
+						selectionChange="onLokasyonPress"
+						require="true"
+						id="lokasyonTable"
+						items="{path: 'lokasyonModel>/LokasyonList', templateShareable : true}">
+							<core:Item key="{lokasyonModel>Lokasyon}" text="{lokasyonModel>LokasyonT}"
+									   	  />					
+					</ComboBox>
+						
+					<Button
+						icon="sap-icon://delete" press="tableDeleteRow" type="Reject"/>
+					
+					
+		        	<Button
+						icon="" press="onListItemPressed" type="Accept" text="Detay" />	
+					<!-- <Text
+						text="{activityList>CalismaSaat}" /> -->																								
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>		
+		</content>
+<!-- 		</TabContainerItem>	
+		</items>	
+	</TabContainer> -->
+	<footer>
+         <Toolbar>
+         <Button id="exitProgram"
+                            text="{i18n>exitProgram}"
+                            press="returnToHomePage"
+                            type="Reject"/>
+            <ToolbarSpacer/>          
+                    <Button id="saveSelectedActivities"
+                            text="{i18n>showSelected}"
+                            press="saveSelectedActivities"
+                            type="Emphasized"/>                                   
+          </Toolbar>
+     </footer>
+	</Page>
+</mvc:View>

@@ -1,0 +1,16 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ResponsivePopover
+		title="{i18n>konu}"
+		class="sapUiPopupWithPadding"
+		placement="Bottom" >
+		<beginButton>
+			<Button text="{i18n>kapat}" press="handleCloseButton" />
+		</beginButton>
+		<content>
+			<Input value="{path: 'detailModel>/DetailRow/AciklamaPlan',
+				              formatter: 'sap.ui.prodea.solman.aktivite.util.Formatter.charFormatter'}"></Input>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

@@ -1,0 +1,83 @@
+<mvc:View controllerName="sap.ui.prodea.solman.aktivite.controller.mainlist"
+		  height="100%"
+		  xmlns:mvc="sap.ui.core.mvc"
+		  xmlns:core="sap.ui.core"
+		  xmlns:layout="sap.ui.layout"
+		  
+		  xmlns="sap.m"
+		  xmlns:f="sap.f">
+		  <Page enableScrolling="false">
+		<customHeader>
+		<Bar>
+		 <contentLeft>
+		<Button type="Back" press="onNavBack" />
+		</contentLeft> 
+		
+		<contentMiddle>
+		
+		</contentMiddle>
+		
+		<contentRight>
+		<Image
+			src="/sap/bc/ui5_ui5/sap/zhaftalik_plan/images/prodea_logo.png"
+			densityAware="true"
+			height="auto"
+			width="80px" >
+		</Image>
+		</contentRight>		
+		</Bar>
+		</customHeader>
+    <OverflowToolbar>				
+		<SearchField id="searchBarLineItem" 
+					 liveChange="handleSearch"
+					 width="50%" />
+		<ToolbarSpacer />
+		<ObjectHeader
+		title="{i18n>weeklyPlanList}">
+	</ObjectHeader>
+	</OverflowToolbar>
+	<content>
+	<ScrollContainer vertical="true"
+					 height="90%">
+	<List
+		id="planList"
+		items="{activityList>/ActivityList}"
+		headerText="">
+		<items>
+			<ObjectListItem
+				title= "{activityList>NameFirst} {path: 'activityList>NameLast',
+				              formatter: 'sap.ui.prodea.solman.aktivite.util.Formatter.charFormatter'}"
+				              
+				type="Active"
+				press="onListItemPressed"
+				number="{path: 'activityList>Musteri',
+				              formatter: 'sap.ui.prodea.solman.aktivite.util.Formatter.charFormatter'}"
+				numberUnit="{path: 'activityList>LokasyonTxt',
+				              formatter: 'sap.ui.prodea.solman.aktivite.util.Formatter.charFormatter'}">
+				<firstStatus>
+					<ObjectStatus 
+						text="{activityList>NameFirst2} {path: 'activityList>NameLast2',
+				              formatter: 'sap.ui.prodea.solman.aktivite.util.Formatter.charFormatter'}"
+						/>
+				</firstStatus>
+				<secondStatus>
+					<ObjectStatus
+						text="{path: 'activityList>Modul',
+				              formatter: 'sap.ui.prodea.solman.aktivite.util.Formatter.charFormatter'}"
+						/>	
+				</secondStatus>
+				<attributes>
+					<ObjectAttribute text="{path: 'activityList>Tarih',
+				              formatter: 'sap.ui.prodea.solman.aktivite.util.Formatter.dateFormatter'}" />
+					<ObjectAttribute text="{path: 'activityList>Gun',
+				              formatter: 'sap.ui.prodea.solman.aktivite.util.Formatter.charFormatter'}" />
+				    <ObjectAttribute text="{i18n>konu} : {path: 'activityList>AciklamaPlan',
+				              formatter: 'sap.ui.prodea.solman.aktivite.util.Formatter.charFormatter'}" />          
+				</attributes>
+			</ObjectListItem>
+		</items>
+	</List>
+	</ScrollContainer>
+		</content>	
+	</Page>
+</mvc:View>

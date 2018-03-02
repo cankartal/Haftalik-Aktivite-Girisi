@@ -1,0 +1,179 @@
+<mvc:View
+	controllerName="sap.ui.prodea.solman.aktivite.controller.detail"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+	busyIndicatorDelay="0">
+	<Page
+		id="detailPageId"
+		class="sapUiResponsiveContentPadding">
+		<customHeader>
+		<Bar>
+		 <contentLeft>
+		<Button type="Back" press="onNavBack" />
+		</contentLeft> 
+		
+		<contentMiddle>
+		<Text text="{i18n>aktivitePlanDetay}"></Text>
+		</contentMiddle>
+		
+		<contentRight>
+		<Image
+			src="/sap/bc/ui5_ui5/sap/zhaftalik_plan/images/prodea_logo.png"
+			densityAware="true"
+			height="auto"
+			width="80px" >
+		</Image>
+		</contentRight>		
+		</Bar>
+		</customHeader>
+		<l:VerticalLayout
+		class="sapUiContentPadding"
+		width="100%">
+				<l:content>	
+						<List
+							binding="{detailModel>/DetailRow/}"
+							detailPress="onDetailPlan"
+							headerText="{i18n>detayHeader}" >
+							<InputListItem
+							label="{i18n>musteri}">
+								<Input
+									enabled ="false"
+									value="{detailModel>/DetailRow/Musteri}"
+							 	/>
+							 </InputListItem>
+							 <InputListItem
+							 label="{i18n>proje}">
+							 	<Input
+							 		enabled ="false"
+									value="{detailModel>/DetailRow/Proje}"
+							 	/>
+							  </InputListItem>
+				            <InputListItem
+							 label="{i18n>danisman}">
+							 	<Input
+							 		enabled ="false"
+									value="{detailModel>/DetailRow/Kullanici}"
+							 	/>
+							  </InputListItem>
+							<InputListItem
+							 label="{i18n>modul}">
+							 	<Input
+							 		enabled ="false"
+									value="{detailModel>/DetailRow/Modul}"
+							 	/>
+							 </InputListItem>
+				             <InputListItem
+				             visible="false"
+							 label="{i18n>departman}">
+							 	<Input
+									value="{detailModel>/DetailRow/Departman}"
+							 	/>
+							 </InputListItem>
+				            <InputListItem
+				             visible="false"
+							 label="{i18n>lokasyon}">
+							 	<Input
+							 		enabled ="false"
+									value="{detailModel>/DetailRow/LokasyonT}"
+							 	/>
+							 </InputListItem>
+							<DisplayListItem
+							 id="onSetDetailsForActivityConsultantId"
+							 label="{i18n>aciklama}"
+							 type="Navigation"
+							 press="onSetDetailsForActivityConsultant"
+							 value="{detailModel>/DetailRow/Aciklama}">
+							  </DisplayListItem> 
+				            <DisplayListItem
+				             id="onSetDetailsForActivityId"
+							 label="{i18n>aciklamaPlan}"
+							 type="Navigation"
+							 press="onSetDetailsForActivity"
+							 value="{detailModel>/DetailRow/AciklamaPlan}">
+							  </DisplayListItem>
+				            <InputListItem
+							 label="{i18n>iDanisman}">
+							 	<ComboBox
+							 			selectionChange="onSelectConsultantDetail"
+										require="true"
+										id="danismanOrtak"
+										selectedKey="{detailModel>/DetailRow/DanismanOrtak}"
+										items="{danismanModel>/dataList}">
+									<core:Item key="{danismanModel>Danisman}" text="{danismanModel>Danisman}" />					
+								</ComboBox>
+							  </InputListItem>
+							<DisplayListItem
+							 id="dayDetailDisplay"
+							 label="{i18n>gun}"
+							 value="{detailModel>/DetailRow/Gun}">
+							 	
+							 </DisplayListItem>
+				            <InputListItem
+							 label="{i18n>tarih}">
+							  	<DatePicker
+						 			id="detailDatePicker"
+                         			displayFormat="dd/MM/yyyy"
+                         			valueFormat = "yyyy-MM-ddTHH:mm:ss"
+                         			text="{detailModel>/DetailRow/Tarih}"
+                         			valueStateText="{i18n>hataliTarih}"
+                         			change="handleChangeDateDetail"
+                         			value="{detailModel>/DetailRow/Tarih}">    
+                     			</DatePicker>
+                     		</InputListItem>	
+				            <InputListItem
+							 label="{i18n>basSaat}">
+							 <!-- valueFormat="HH:mm:ss" -->
+							 	<TimePicker
+									id="detailTimeBasSaat"
+									valueFormat="HH:mm:ss"
+									displayFormat="HH:mm:ss"
+									value="{path : 'detailModel>/DetailRow/BasSaat', type : 'sap.ui.model.type.Time' ,formatOptions: { source : {  pattern : '\'PT\'HH\'H\'mm\'M\'ss\'S\'' }, pattern : 'HH:mm:ss'}}"
+									change="setWorkingHours"
+									/>
+							 </InputListItem>
+				            <InputListItem
+							 label="{i18n>bitSaat}">
+							 	<TimePicker
+									id="detailTimeBitSaat"
+									valueFormat="HH:mm:ss"
+									displayFormat="HH:mm:ss"
+									value="{path : 'detailModel>/DetailRow/BitSaat', type : 'sap.ui.model.type.Time' ,formatOptions: { source : {  pattern : '\'PT\'HH\'H\'mm\'M\'ss\'S\'' }, pattern : 'HH:mm:ss'}}"
+									change="setWorkingHours"
+									/>
+							 </InputListItem>
+				            <DisplayListItem
+				             id="workingHourId"
+							 label="{i18n>cSaati}"
+							 value="{detailModel>/DetailRow/CalismaSaat}"
+							  />
+							<InputListItem
+							 label="{i18n>sehir}">
+							 	<ComboBox
+							 			change="setCitySelection"
+										require="true"
+										id="sehirDetail"
+										selectedKey="{detailModel>/DetailRow/Sehir}"
+										items="{sehirModel>/SehirList}">
+									<core:Item key="{sehirModel>Sehir}" text="{sehirModel>Sehir}" />					
+								</ComboBox>
+							  </InputListItem>
+							  <InputListItem
+							 label="{i18n>activityType}">
+							 	<ComboBox
+							 			change="setActivityType"
+										require="true"
+										id="activityTypeDetail"
+										selectedKey="{detailModel>/DetailRow/Aktivite}"
+										items="{activityTypeModel>/dataList}">
+									<core:Item key="{activityTypeModel>Aktivite}" text="{activityTypeModel>Tanim}"
+											    />					
+								</ComboBox>
+							  </InputListItem>  
+						</List>
+				</l:content>
+		</l:VerticalLayout>
+	</Page>
+</mvc:View>

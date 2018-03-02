@@ -1,0 +1,129 @@
+<mvc:View
+   id="selection"
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core"
+   xmlns:mvc="sap.ui.core.mvc"
+   xmlns:l="sap.ui.layout"
+   xmlns:f="sap.ui.layout.form"
+   controllerName="sap.ui.prodea.solman.aktivite.controller.selection">
+   <Page>
+		 <customHeader>
+		<Bar>
+		 <contentLeft>
+		</contentLeft> 
+		
+		<contentMiddle>
+		<Text text="{i18n>aktivityTitle}"></Text>
+		</contentMiddle>
+		<contentRight>
+		
+		</contentRight>		
+		</Bar>
+		</customHeader>   		
+		    		
+		 <VBox class="sapUiSmallMargin">
+		 
+			 <FlexBox
+          alignItems="Start"
+          justifyContent="Center">
+          <items>
+            <Image
+			src="/sap/bc/ui5_ui5/sap/zhaftalik_plan/images/prodea_logo.png"
+			densityAware="true"
+			height="auto"
+			width="100px" >
+		</Image>
+          </items>
+        </FlexBox>
+		<f:SimpleForm id="selectionElements"
+			maxContainerCols="2"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			labelSpanL="5"
+			labelSpanM="5"
+			labelSpanS="5"
+			emptySpanL="1"
+			emptySpanM="1"
+			emptySpanS="1"
+			columnsL="1"
+			columnsM="1"
+			class="editableForm"
+			binding="{/loginInfo}">
+			<f:toolbar>
+			
+				<Toolbar id="TB1">
+					<Title text="" level="H4" titleStyle="H4"/>
+					<ToolbarSpacer />
+				</Toolbar> 
+		</f:toolbar>
+			<f:content>			
+				<Toolbar>
+					<!-- <Title text="Rapor G�r�n�m�" level="H5" titleStyle="H5"/> -->
+					<ToolbarSpacer />
+				</Toolbar>		
+				<Label text="{i18n>aktiviteBasTar}" />
+				<DateTimeInput id="baslangicTarih"
+                               displayFormat="dd/MM/yyyy"
+                               valueFormat="ddMMyyyy"
+                               valueStateText="{i18n>hataliTarih}"
+                               >		
+	            <layoutData>
+                  <l:GridData span="L3 M3 S6"/>
+                </layoutData>
+                </DateTimeInput>
+                <Label text="{i18n>aktiviteBitTar}" />                
+				<DateTimeInput id="bitisTarih"
+                               displayFormat="dd/MM/yyyy"
+                               valueFormat="ddMMyyyy"
+                               valueStateText="{i18n>hataliTarih}"
+                               >	
+	            <layoutData>
+                  <l:GridData span="L3 M3 S6"/>
+                </layoutData>
+                </DateTimeInput>
+				<Label text="{i18n>danisman}" require="true"/>
+				<!-- selectedKey="{loginInfo>/dataList/0/Danisman}"  -->
+				<ComboBox
+				showSecondaryValues="true"
+				id="danismanSelection"
+				items="{path: 'danismanModel>/dataList', templateShareable : false}"
+				selectedKey="{loginInfo>/dataList/0/Danisman}">
+				<core:ListItem key="{danismanModel>Danisman}" text="{danismanModel>Danisman}" additionalText ="{danismanModel>NameFirst} {danismanModel>NameLast}"/>
+	             <layoutData>
+                  <l:GridData span="L3 M3 S6"/>
+                </layoutData> 				
+				</ComboBox>												<!-- SDep -->
+				<Label></Label>
+				<l:VerticalLayout
+		class="sapUiSmallMarginBottom"
+		width="100%">
+		<l:content>
+		</l:content>
+	</l:VerticalLayout>
+			</f:content>
+		</f:SimpleForm>
+		
+		<RadioButtonGroup select="" columns="5"  id="radioButtonGroup" class="sapUiMediumMarginBottom">
+				<buttons>
+					<RadioButton valueState="Warning" id="approvedSelected" text="Onaylanmis"/>
+					<RadioButton valueState="Success" id="notApprovedSelected" text="Onaylanmamis"/>
+					<RadioButton valueState="Error" id="allSelected" text="Tumu"/>
+				</buttons>
+			</RadioButtonGroup>
+			
+			
+			<Button id="createPlanButton" text="Plan Olustur" tooltip="yürüt" type="Accept"  press="createAktivity" enabled="false"/>
+			<Button  tooltip="yürüt" type="Accept" icon="sap-icon://time-account" press="planInitialAktivies"  />
+		
+   </VBox>
+    <footer visible="false">
+   		<OverflowToolbar>
+   			<ToolbarSpacer/>
+   		 	<Button id="exitProgramSelection"
+                            text="{i18n>exitProgram}"
+                            press="returnToHomePage"
+                            type="Reject"/> 
+   		</OverflowToolbar>
+   </footer>
+   </Page>
+</mvc:View>

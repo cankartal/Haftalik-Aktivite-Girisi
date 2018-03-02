@@ -1,0 +1,236 @@
+<core:FragmentDefinition
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m" 
+	id="createPlanFragment">
+	<Dialog id="planCreateFragmentDialog" title="{18n>announce}" confirm="onSavePlan"
+		close="onExitFragment">
+		<customHeader>
+		<Bar>
+		 <contentLeft>
+		
+		</contentLeft> 
+		
+		<contentMiddle>
+		<Image
+			src="/sap/bc/ui5_ui5/sap/zhaftalik_plan/images/prodea_logo.png"
+			densityAware="true"
+			height="auto"
+			width="80px" >
+		</Image>
+		</contentMiddle>
+		
+		<contentRight>
+		
+		</contentRight>		
+		</Bar>
+		</customHeader>
+		
+	<content>
+			<VBox class="sapUiSmallMargin">
+			<f:Form
+				
+				editable="true">
+				<f:title>
+					<core:Title text="{i18n>dialogReturn}" />
+				</f:title>
+				<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="4"
+					labelSpanL="3"
+					labelSpanM="4"
+					labelSpanS="8"
+					adjustLabelSpan="true"
+					emptySpanXL="0"
+					emptySpanL="4"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false"
+				/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement>
+								<f:fields>
+			                    <Label text="{i18n>sirketKodu}:">
+			                    <layoutData>
+										<l:GridData span="XL4 L4 M4 S4" />
+									</layoutData>
+			                    </Label>
+								<ComboBox
+										enable="true"
+										required="true"
+										id="sirketName"
+										items="{sirketModel>/dataList}"
+										selectedKey="{loginInfo>/dataList/0/SirketKodu}">
+							<core:Item key="{sirketModel>SirketKodu}" text="{sirketModel>SirketKodu}"  />		<!--SMsrket  -->
+	            				<layoutData>
+										<l:GridData span="XL8 L8 M8 S8" />
+									</layoutData>
+								</ComboBox>	
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:fields>
+			                    <Label text="{i18n>proje}" require="true" visible="false">
+			                    <layoutData>
+										<l:GridData span="XL4 L4 M4 S4" />
+									</layoutData>
+			                    </Label>
+								<ComboBox
+										require="true"
+										id="proje"
+										items="{projectModel>/dataList}"
+										visible="false">
+									<core:Item key="{projectModel>Proje}" text="{projectModel>Proje}" />			
+								
+								<layoutData>
+										<l:GridData span="XL8 L8 M8 S8" />
+									</layoutData>
+								</ComboBox>	
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:fields>
+			                    <Label text="{i18n>danisman}" require="true">
+			                   <layoutData>
+										<l:GridData span="XL4 L4 M4 S4" />
+									</layoutData>
+								</Label>	
+			                    <MultiComboBox
+			                    		showSecondaryValues="true"
+										require="true"
+										id="danisman"
+										items="{path: 'danismanModel>/dataList', templateShareable : false}">
+									<core:ListItem key="{danismanModel>Danisman}" text="{danismanModel>Danisman}--{danismanModel>NameFirst} {danismanModel>NameLast}"/>
+	            					<layoutData>
+										<l:GridData span="XL8 L8 M8 S8" />
+									</layoutData>					
+								</MultiComboBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:fields>
+			                     <Label text="{i18n>departman}" require="true" visible="false">
+			                     <layoutData>
+										<l:GridData span="XL4 L4 M4 S4" />
+									</layoutData>
+								</Label>	
+									<ComboBox
+										require="true"
+										id="departman"
+										items="{departmanModel>/dataList}" visible="false">
+								<core:Item key="{departmanModel>Departman}" text="{departmanModel>Departman}" />
+									<layoutData>
+										<l:GridData span="XL8 L8 M8 S8" />
+									</layoutData>
+									</ComboBox>			                        														
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+							 <f:fields>
+							 <Label text="{i18n>planDateTimeStart}:">
+							 <layoutData>
+										<l:GridData span="XL4 L4 M4 S4" />
+									</layoutData>
+							 </Label>
+								<DateTimeInput
+								 
+							   id="formBaslangicTarih"
+                               displayFormat="dd/MM/yyyy"
+                               valueFormat="ddMMyyyy"
+                               valueStateText="{i18n>hataliTarih}">
+                               <layoutData>
+										<l:GridData span="XL8 L8 M8 S8" />
+									</layoutData>
+                               </DateTimeInput>
+							</f:fields> 
+								<f:fields>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+							 <f:fields>
+							 <Label text="{i18n>planDateTimeEnd}:">
+							 <layoutData>
+										<l:GridData span="XL4 L4 M4 S4" />
+									</layoutData>
+							 </Label>
+								<DateTimeInput
+							   id="formBitisTarih"
+                               displayFormat="dd/MM/yyyy"
+                               valueFormat="ddMMyyyy"
+                               valueStateText="{i18n>hataliTarih}" >
+                               <layoutData>
+										<l:GridData span="XL8 L8 M8 S8" />
+									</layoutData>
+                               </DateTimeInput>
+								
+							</f:fields> 
+								<f:fields>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:fields>
+			                   <Label text="{i18n>modul}:" visible="false">
+			                   <layoutData>
+										<l:GridData span="XL4 L4 M4 S4" />
+									</layoutData>
+			                   </Label>
+									<ComboBox 
+										  showSecondaryValues="true" 
+			  					          fieldWidth="100%"
+			  					          id="module" 
+			  					          items="{moduleModel>/dataList}" 
+			  					          change="checkIfSelected"
+			  					          visible="false">
+									<core:ListItem
+											key="{moduleModel>Modul}"
+								            text="{moduleModel>Modul}"
+								              />
+								    <layoutData>
+										<l:GridData span="XL8 L8 M8 S8" />
+									</layoutData>        
+									</ComboBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:fields>
+			                   <Label text="{i18n>musteri}:">
+			                   <layoutData>
+										<l:GridData span="XL4 L4 M4 S4" />
+									</layoutData>
+			                   </Label>
+									<ComboBox 
+										  showSecondaryValues="true" 
+			  					          fieldWidth="100%"
+			  					          id="musteri" 
+			  					          items="{musteriModel>/dataList}" 
+			  					          change="checkIfSelected">
+									<core:ListItem
+											key="{musteriModel>Musteri}"
+								            text="{musteriModel>Musteri}"
+								              />
+								    <layoutData>
+										<l:GridData span="XL8 L8 M8 S8" />
+									</layoutData>        
+									</ComboBox>
+								</f:fields>
+							</f:FormElement>					
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+			</VBox>
+	      </content>
+	      <CheckBox id="tekno" select ="checkTekno" text="Tekno Park"></CheckBox>
+         <buttons>
+        	<Button text="{i18n>noteSave}" type="Accept" press="onSaveAktivity"/>
+        	<Button text="{i18n>noteExit}" type="Reject" press="onExitFragment"/>
+        </buttons> 
+    </Dialog>
+</core:FragmentDefinition>

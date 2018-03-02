@@ -1,0 +1,11 @@
+<mvc:View
+	controllerName="sap.ui.prodea.solman.aktivite.controller.app"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true">
+	<App id="app">
+	<Page>
+	<mvc:View id="selection" viewName="sap.ui.prodea.solman.aktivite.view.selection"/>
+	</Page> 
+	</App>
+</mvc:View>

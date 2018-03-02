@@ -1,0 +1,10 @@
+<core:View xmlns:core="sap.ui.core"
+        xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+		controllerName="sap.ui.prodea.solman.aktivite.controller.linedetail" 
+		xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id="lineItem"
+	      showNavButton="{device>/isPhone}"
+	      navButtonPress="handleNavBack">
+
+	</Page>
+</core:View>
